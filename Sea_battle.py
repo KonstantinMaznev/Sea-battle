@@ -1,3 +1,4 @@
+from random import randint
 class Greet:
     def greeting(self):
         print("Приветствуем вас в игре морской бой")
@@ -8,6 +9,16 @@ class Board:
         self.columnsCount = c
         for i in range(r*c):
             self.cells.append(i)
+
+    def render(self):
+        rc = self.getRowsCount()
+        cl = self.getColumnsCount()
+
+        for r in range(rc):
+            row = []
+            for b in range(cl):
+                row.append(b)
+            print("|".join(row))
 
     def getRowsCount(self):
         return self.rowsCount
@@ -21,3 +32,9 @@ class Ship:
     def __init__(self,x,y):
         self.x=x
         self.y=y
+
+
+# if __name__ == '__main__':
+    # get users
+    # swich turns
+    # get action
