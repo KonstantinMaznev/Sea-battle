@@ -2,7 +2,18 @@ from random import randint
 class Greet:
     def greeting(self):
         print("Приветствуем вас в игре морской бой")
+        print("Формат ввода: x y")
+        print("x - номер строки")
+        print("y - номер столбца")
 
+class Point():
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
 class Ship:
     def __init__(self,x,y):
         self.x=x
@@ -40,14 +51,11 @@ class Board(Ship):
         return self.cells
 
 
-class Ship:
-    def __init__(self,x,y):
-        self.x=x
-        self.y=y
 class Player(Ship):
     def __init__(self):
         super.__init__()
-
+class Computer:
+    def
 class Win:
     if Player()==0:
         print("Победил Компьютер!")
