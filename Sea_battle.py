@@ -1,10 +1,4 @@
 from random import randint
-class Greet:
-    def greeting(self):
-        print("Приветствуем вас в игре морской бой")
-        print("Формат ввода: x y")
-        print("x - номер строки")
-        print("y - номер столбца")
 
 class Point:
     def __init__(self,x,y):
@@ -58,11 +52,8 @@ class Ship:
         return shot in self.points
 
 
-# s=Ship(Point(1, 2),4,0)
-# print(s.points)
-
 class Board(Ship):
-    def __init__(self, hid = False, size = 6):
+    def __init__(self, hid=False, size=6):
         self.size = size
         self.hid = hid
 
@@ -73,7 +64,7 @@ class Board(Ship):
         self.busy = []
         self.ships = []
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = ""
         res += "  | 1 | 2 | 3 | 4 | 5 | 6 |"
         for i, row in enumerate(self.field):
@@ -122,7 +113,7 @@ class Board(Ship):
         self.busy.append(d)
 
         for ship in self.ships:
-            if d in ship.shooten(d):
+            if d in ship.points:
                 ship.lives -= 1
                 self.field[d.x][d.y] = "X"
                 if ship.lives == 0:
@@ -192,7 +183,7 @@ class Game:
         co = self.random_board()
         co.hid = True
 
-        self.ai = AI(co, pl)
+        self.ai = Computer(co, pl)
         self.us = User(pl, co)
 
     def random_board(self):
@@ -210,7 +201,7 @@ class Game:
                 attempts += 1
                 if attempts > 2000:
                     return None
-                ship = Ship(Dot(randint(0, self.size), randint(0, self.size)), l, randint(0, 1))
+                ship = Ship(Point(randint(0, self.size), randint(0, self.size)), l, randint(0, 1))
                 try:
                     board.add_ship(ship)
                     break
@@ -224,6 +215,7 @@ class Game:
         print("Формат ввода: x y")
         print("x - номер строки")
         print("y - номер столбца")
+
     def loop(self):
         num = 0
         while True:
@@ -259,20 +251,5 @@ class Game:
         self.greet()
         self.loop()
 
-
 g = Game()
 g.start()
-
-
-#
-# class Win:
-#     if Player()==0:
-#         print("Победил Компьютер!")
-#     else:
-#         print("Победил Игрок!")
-# w=Board()
-# print(w.__init__())
-# # if __name__ == '__main__':
-#     # get users
-#     # swich turns
-#     # get action
